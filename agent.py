@@ -35,7 +35,7 @@ class Agent:
         self.env = env
         self.model_name = model_name
         self.memory = ReplayMemory(memory_capacity)
-        self.writer = SummaryWriter()
+        self.writer = SummaryWriter(log_dir='./log/')
         # 超参数设置
         self.batch_size = batch_size
         self.gamma = gamma
@@ -132,3 +132,18 @@ class Agent:
         self.env.close()
         self.writer.close()
         torch.save(self.policy_net.state_dict(), f="./model/{self.num_episodes}.pth")
+
+    def play(self):
+        self.policy_net.load_state_dict(torch.load(self.model_name))
+        self.policy_net.eval()
+        state = self.env.reset()
+        state = torch.tensor([state], device=self.device, dtype=torch.float32)
+        for t in range(10000):
+            self.env.render()
+            action = self.policy_net(state).max(1)[1].view(1, 1)
+            next_state, reward, done, _ = self.env.step(action.item())
+            state = torch.tensor([next_state], device=self.device, dtype=torch.float32)
+            if done:
+                break
+        self.env.close()
+

@@ -6,6 +6,6 @@ import gymnasium as gym
 
 from agent import Agent
 
-env = gym.make("Breakout-v5")
+env = gym.make("ALE/Breakout-v5")
 agent = Agent(env)
 agent.train()
