@@ -4,7 +4,6 @@
 # @Author : ZhangKuo
 import torch
 import torch.nn as nn
-from torchsummary import summary
 
 
 class DQN(nn.Module):

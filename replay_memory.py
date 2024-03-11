@@ -2,15 +2,15 @@
 # _*_ coding: utf-8 _*_
 # @Time : 2024/3/9 11:04
 # @Author : ZhangKuo
-from collections import deque, namedtuple
 import random
+from collections import deque, namedtuple
 
-
-Transition = namedtuple('Transition', ('state', 'action', 'reward', 'next_state', 'done'))
+Transition = namedtuple(
+    "Transition", ("state", "action", "reward", "next_state", "done")
+)
 
 
 class ReplayMemory:
-
     def __init__(self, capacity):
         self.memory = deque(maxlen=capacity)
 

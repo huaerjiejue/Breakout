@@ -2,25 +2,20 @@
 # _*_ coding: utf-8 _*_
 # @Time : 2024/3/9 10:49
 # @Author : ZhangKuo
-import time
+import math
 import random
-import numpy as np
-import ale_py
+from collections import deque, namedtuple
+from itertools import count
 
+import cv2
 import gymnasium as gym
-
+import matplotlib.pyplot as plt
+import numpy as np
 # import gym
 import torch
 import torch.nn as nn
-from torch import optim
-from torch.autograd import Variable
 import torch.nn.functional as F
-from collections import deque, namedtuple
-from tqdm import tqdm
-import matplotlib.pyplot as plt
-import cv2
-from itertools import count
-import random, pickle, os.path, math, glob
+from torch import optim
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
